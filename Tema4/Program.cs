@@ -9,7 +9,7 @@ namespace Tema4
 {
     internal class Program
     {
-        public static int Main(string[] args)
+        public static int Main(string[] args) //Tema4.exe
         {
             if (args.Length == 0)
             {
@@ -18,13 +18,23 @@ namespace Tema4
             }
 
             string directorio = Environment.ExpandEnvironmentVariables(args[0]);
+
             if (!Directory.Exists(directorio))
             {
                 Console.WriteLine("El directorio no existe");
                 return 1;
             }
+
             try
             {
+                string[] subdirectorios = Directory.GetDirectories(directorio);
+                foreach (string subdirectorio in subdirectorios)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    DirectoryInfo info = new DirectoryInfo(subdirectorio);
+                    Console.WriteLine($"{info.Name}");
+                }
+
                 string[] archivos = Directory.GetFiles(directorio);
                 foreach (string archivo in archivos)
                 {
@@ -34,13 +44,6 @@ namespace Tema4
                         FileInfo info = new FileInfo(archivo);
                         Console.WriteLine($"{info.Name} {info.Length} bytes");
                     }
-                }
-                string[] subdirectorios = Directory.GetDirectories(directorio);
-                foreach (string subdirectorio in subdirectorios)
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    DirectoryInfo info = new DirectoryInfo(subdirectorio);
-                    Console.WriteLine($"{info.Name}");
                 }
             }
             catch (UnauthorizedAccessException ex)
