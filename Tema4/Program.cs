@@ -51,7 +51,14 @@ namespace Tema4
                 Console.ResetColor();
                 Console.WriteLine("No tienes permisos para acceder a este directorio");
                 return -1;
+            }// IOException
+            catch (IOException ex)
+            {
+                Console.ResetColor();
+                Console.WriteLine("Se ha producido un error: " + ex.Message);
+                return -1;
             }
+
             Console.ResetColor();
             return 0;
         }

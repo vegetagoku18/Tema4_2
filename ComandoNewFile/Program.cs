@@ -49,7 +49,7 @@ namespace ComandoNewFile
                 Console.WriteLine("No tiene permisos para escribir en el fichero");
                 return 3;
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 Console.WriteLine("Se ha producido un error: " + e.Message);
                 return -1;

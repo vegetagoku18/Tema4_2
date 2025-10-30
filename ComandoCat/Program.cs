@@ -52,13 +52,12 @@ namespace ComandoCat
                     string linea;
                     int contador = 0;
 
-                    while ((linea = sr.ReadLine()) != null)
+                    while ((linea = sr.ReadLine()) != null&& contador < numLineas)
                     {
                         Console.WriteLine(linea);
                         contador++;
 
-                        if (numLineas > 0 && contador >= numLineas)
-                            break;
+                  
                     }
                 }
             }
@@ -67,7 +66,7 @@ namespace ComandoCat
                 Console.WriteLine("No tienes permisos para acceder a este fichero");
                 return -1;
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
                 Console.WriteLine("Error al leer el fichero: " + ex.Message);
                 return -1;
